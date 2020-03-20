@@ -13,7 +13,7 @@ class OtherEvent extends Event
      */
     public function canHandlePayload():bool
     {
-        return $this->event === 'other';
+        return true;
     }
 
     public function handle()

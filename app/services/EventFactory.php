@@ -16,6 +16,7 @@ class EventFactory
 {
     /**
      * @var array
+     * supported events
      */
     protected static $events = [
         ClickEvent::class,
@@ -25,17 +26,20 @@ class EventFactory
 
     /**
      * @param $payload
-     * @return OtherEvent|mixed
+     * @return Event
      */
-    public static function createForPayload($payload)
+    public static function createForPayload($payload):Event
     {
-        $event = collect(static::$events)
+        $event = collect(static::$events) //<==== collect events
+            // make objects of events class ==> from string to object
             ->map(function (string $eventClass) use ($payload) {
                 return new $eventClass($payload);
             })
+            // return first class which can Handle Payload => event
             ->first(function (Event $event) {
                 return  $event->canHandlePayload();
             });
+        // if there is no event match the payload event then return other event
         return $event ?? new OtherEvent($payload);
     }
 }

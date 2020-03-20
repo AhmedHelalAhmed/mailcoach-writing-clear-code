@@ -20,6 +20,11 @@ class EventController extends Controller
     {
         $dedicatedEvent=EventFactory::createForPayload($this->getPayload($event));
         $dedicatedEvent->handle();
+        // when event we need new event
+        // just make a new class that extends Event (App\services\events\Event)
+        // and register it in $event array in factory (App\services\EventFactory)
+        // then we can go
+        // we will never modify the code here in the controller any more
     }
 
     /**
