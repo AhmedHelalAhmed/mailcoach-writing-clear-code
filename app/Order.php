@@ -10,7 +10,16 @@ class Order extends Model
 
     public function ship()
     {
-        return $this->canShip();
+        if($this->canShip())
+        {
+            /**
+             * some work being performed
+             */
+            return true;
+        }
+
+        
+        return false;
     }
     // 1- make encapsulation
     protected function canShip():bool
