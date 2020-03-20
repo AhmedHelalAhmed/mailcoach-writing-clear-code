@@ -40,17 +40,5 @@ class Order extends Model
 
         // put success cases the the bottom
         return true;
-
-
-        /*
-            return (
-                        !
-                             (
-                                 (($this->shipping_country) == "GB")
-                            ||
-                                 (strcmp($this->status, "Valid") !== 0)
-                            )
-                 );
-        */
     }
 }
