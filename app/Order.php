@@ -11,7 +11,7 @@ class Order extends Model
     public function ship()
     {
         // make special cases in the top
-        if(!$this->canShip()) //<======== special case
+        if (!$this->canShip()) //<======== special case
         {
             return false;
         }
@@ -22,9 +22,35 @@ class Order extends Model
          */
         return true;
     }
+
     // 1- make encapsulation
-    protected function canShip():bool
+    protected function canShip(): bool
     {
-        return (!((($this->shipping_country) == "GB") || (strcmp($this->status, "Valid") !== 0)));
+        // put in the top => special cases
+        if($this->shipping_country==="GB") // <=== special case
+        {
+            return false;
+        }
+
+        if($this->status !=="Valid") // <=== special case
+        {
+            return false;
+        }
+
+
+        // put success cases the the bottom
+        return true;
+
+
+        /*
+            return (
+                        !
+                             (
+                                 (($this->shipping_country) == "GB")
+                            ||
+                                 (strcmp($this->status, "Valid") !== 0)
+                            )
+                 );
+        */
     }
 }
