@@ -19,13 +19,13 @@ class OrderTest extends TestCase
     /** @test */
     public function it_can_ship()
     {
-        $this->assertTrue(OrderFactory::create('Be','Valid')->ship());
-        $this->assertFalse(OrderFactory::create('Be','Invalid')->ship());
+        $this->assertTrue(OrderFactory::create('Be', 'Valid')->ship());
+        $this->assertFalse(OrderFactory::create('Be', 'Invalid')->ship());
 
-        $this->assertFalse(OrderFactory::create('GB','Valid')->ship());
-        $this->assertFalse(OrderFactory::create('GB','Invalid')->ship());
+        $this->assertFalse(OrderFactory::create('GB', 'Valid')->ship());
+        $this->assertFalse(OrderFactory::create('GB', 'Invalid')->ship());
 
         // some special cases
-        $this->assertFalse(OrderFactory::create('','')->ship());
+        $this->assertFalse(OrderFactory::create('', '')->ship());
     }
 }

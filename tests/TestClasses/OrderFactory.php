@@ -1,5 +1,6 @@
 <?php
 namespace Tests\TestClasses;
+
 use App\Order;
 
 /**
@@ -13,9 +14,9 @@ class OrderFactory
      * @param $status
      * @return Order
      */
-    public static function create($shipping_country,$status)
+    public static function create($shipping_country, $status)
     {
-      return new Order([
+        return new Order([
           'shipping_country'=>$shipping_country,
           'status'=>$status
       ]);
