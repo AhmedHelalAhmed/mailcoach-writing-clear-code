@@ -1,30 +1,37 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\services\EventFactory;
 
+/**
+ * Class EventController
+ * @package App\Http\Controllers
+ * refactor if blocks to dedicated classes
+ */
 class EventController extends Controller
 {
+    /**
+     * @param $event
+     * visit url
+     * /events/opened
+     * /events/clicked
+     */
     public function show($event)
     {
+        $dedicatedEvent=EventFactory::createForPayload($this->getPayload($event));
+        $dedicatedEvent->handle();
+    }
 
-        if($event=='clicked')
-        {
-            dd('hit clicked event');
-            return;
-        }
-
-        if($event=='opened')
-        {
-            dd('hit opened event');
-            return;
-        }
-
-        if($event=='failed')
-        {
-            dd('hit failed event');
-            return;
-        }
+    /**
+     * @param $event
+     * @return array
+     */
+    protected function getPayload($event)
+    {
+        return [
+            'event-data'=>[
+                'event'=>$event
+            ]
+        ];
     }
 }
