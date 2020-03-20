@@ -3,16 +3,13 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Tests\TestClasses\OrderFactory;
 
-class ExampleTest extends TestCase
+class OrderTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
+    /** @test */
+    public function it_can_ship()
     {
-        $this->assertTrue(true);
+        $this->assertTrue(OrderFactory::create('Be','Valid')->ship());
     }
 }

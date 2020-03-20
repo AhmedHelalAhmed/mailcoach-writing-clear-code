@@ -10,7 +10,7 @@ class Order extends Model
 
     public function ship()
     {
-        if (!((($this->shipping_country) == "GB") || (strcmp($this->status, "valid") !== 0))) {
+        if (!((($this->shipping_country) == "GB") || (strcmp($this->status, "Valid") !== 0))) {
             return true;
         }
         return false;
