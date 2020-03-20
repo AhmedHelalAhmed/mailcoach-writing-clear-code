@@ -10,9 +10,11 @@ class Order extends Model
 
     public function ship()
     {
-        if (!((($this->shipping_country) == "GB") || (strcmp($this->status, "Valid") !== 0))) {
-            return true;
-        }
-        return false;
+        return $this->canShip();
+    }
+    // 1- make encapsulation
+    protected function canShip():bool
+    {
+        return (!((($this->shipping_country) == "GB") || (strcmp($this->status, "Valid") !== 0)));
     }
 }
